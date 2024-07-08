@@ -1,34 +1,23 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from "react";
-import type { PropsWithChildren } from "react";
-import {
-  Button,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TextInput,
-  useColorScheme,
-  View,
-} from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native";
 
 function App(): React.JSX.Element {
+  const [name, setName] = useState("");
+
+  const handleChangeInput = (text: string) => {
+    console.log(text);
+    setName(text);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} />
         <Text>텍스트</Text>
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput style={styles.input} />
-        <Text>텍스트</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={handleChangeInput}
+          value={name}
+        />
       </View>
     </SafeAreaView>
   );
@@ -37,7 +26,6 @@ function App(): React.JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "red",
   },
   inputContainer: {
     flex: 1,
@@ -50,7 +38,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderWidth: 2,
     borderColor: "black",
-    height: 100,
+    height: 50,
     width: 100,
   },
 });
