@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native";
+import AuthHomeScreen from "./src/screens/AuthHomeScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import AuthStackNavigator from "./src/navigation/AuthStackNavigator";
 
 function App(): React.JSX.Element {
   const [name, setName] = useState("");
@@ -10,16 +13,9 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.inputContainer}>
-        <Text>텍스트</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={handleChangeInput}
-          value={name}
-        />
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <AuthStackNavigator />
+    </NavigationContainer>
   );
 }
 
