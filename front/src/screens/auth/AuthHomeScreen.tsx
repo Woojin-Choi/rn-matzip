@@ -1,6 +1,7 @@
 import {
   Button,
   Dimensions,
+  Image,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -11,6 +12,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { AuthStackParamList } from "../../navigations/stack/AuthStackNavigator";
 import { authNavigations } from "../../constants/navigations";
 import CustomButton from "../../components/CustomButton";
+import { ScrollView } from "react-native-gesture-handler";
 
 type AuthHomeScreenProps = StackScreenProps<
   AuthStackParamList,
@@ -18,11 +20,16 @@ type AuthHomeScreenProps = StackScreenProps<
 >;
 
 export default function AuthHomeScreen({ navigation }: AuthHomeScreenProps) {
-  console.log("screen", Dimensions.get("screen").height);
-  console.log("window", Dimensions.get("window").height);
   return (
-    <SafeAreaView>
-      <View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.imageContainer}>
+        <Image
+          source={require("../../assets/matzip.png")}
+          style={styles.image}
+          resizeMode="contain"
+        />
+      </View>
+      <View style={styles.buttonContainer}>
         <CustomButton
           label="로그인 화면으로 이동"
           // variant="filled"
@@ -42,7 +49,26 @@ export default function AuthHomeScreen({ navigation }: AuthHomeScreenProps) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    margin: 30,
+    alignItems: "center",
+  },
+  imageContainer: {
+    flex: 2,
+    width: Dimensions.get("screen").width / 2,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+  },
+  buttonContainer: {
+    flex: 1,
+    gap: 10,
+    width: "100%",
+  },
+});
 
 /*
 - typeof authNavigations.AUTH_HOME 이거랑 'AuthHome'이 왜 똑같은거지? typeof는 출력해보면 string 나오는데?
